@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+
+body {
+    background-color: var(--color-slate-800);
+    color: var(--color-zinc-100);
+    font-family: monospace;
+    font-size: larger;
+}
