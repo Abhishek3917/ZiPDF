@@ -1,14 +1,29 @@
 import { Header } from "../components/Header";
-import { UploadUi } from "../components/UploadUi";
-
+import { UploaduiCard } from "../components/UploaduiCard";
+import { useState } from "react";
+import {OperationUi } from '../components/OperationUi'
 
 export default function UploadFile(){
+    const [file,setFile]=useState<File[]>([])
     return(
         <>
-        <h1></h1>
         <Header/>
             <div>
-                <UploadUi />
+                {
+                  file.length===0?(
+                    <UploaduiCard file={file}
+                    setFile={setFile}/>
+                  )
+                  :
+                  (
+                    <OperationUi 
+                        file={file}
+                        setFile={setFile}
+                    />
+                    
+                  )
+
+                }
             </div>
         </>
     )
