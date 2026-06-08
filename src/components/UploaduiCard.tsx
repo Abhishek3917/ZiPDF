@@ -1,6 +1,31 @@
 import { Button } from "./Button";
 import { FileText, } from "lucide-react";
-export function UploadUi(){
+import { useRef } from "react";
+
+type FileProps={
+    file:File[],
+    setFile:React.Dispatch<React.SetStateAction<File[]>
+    >
+}
+
+
+
+export function UploaduiCard(
+    {
+        file,
+        setFile,
+    }:FileProps
+)
+
+{
+    const inputFile = useRef<HTMLInputElement>(null)
+    const handleChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
+        if(!e.target.files) return;
+        setFile([...file, ...Array.from(e.target.files)])
+        const currentLoc = window.location.href 
+        console.log(currentLoc)        
+    }
+    
     return(
         <>
         <div>
@@ -17,7 +42,9 @@ export function UploadUi(){
                     <p className="text-lg">or click below to browse</p>
                 </div>
                 <div className="flex justify-between items-center flex-col lg:-translate-y-10 sm:-translate-y-40 gap-2">
-                    <Button>Choose Image</Button>
+                    <Button onClick={() => inputFile.current?.click()}>Choose Image</Button>
+
+                <input ref={inputFile} type='file' multiple onChange={handleChange} className="hidden"></input>
                     
                 </div>
                 
