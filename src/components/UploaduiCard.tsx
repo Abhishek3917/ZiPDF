@@ -4,7 +4,9 @@ import { useRef } from "react";
 
 
 type FileProps = {
-    setFile: React.Dispatch<React.SetStateAction<File[]>>
+    file:File[],
+    setFile:React.Dispatch<React.SetStateAction<File[]>
+    >
 }
 
 
