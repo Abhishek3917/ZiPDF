@@ -1,63 +1,136 @@
 import { Button } from "./Button";
-import { FileText, } from "lucide-react";
+import { FileText } from "lucide-react";
 import { useRef } from "react";
 
-type FileProps={
+
+type FileProps = {
     file:File[],
     setFile:React.Dispatch<React.SetStateAction<File[]>
     >
 }
 
 
-
 export function UploaduiCard(
-    {
-        file,
-        setFile,
-    }:FileProps
-)
-
 {
-    const inputFile = useRef<HTMLInputElement>(null)
-    const handleChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
-        if(!e.target.files) return;
-        setFile([...file, ...Array.from(e.target.files)])
-        const currentLoc = window.location.href 
-        console.log(currentLoc)        
-    }
-    
-    return(
-        <>
-        <div>
-        <h1></h1>
-        </div>
-        <div className="flex p-20">
-            
-            <div className="flex box-border size-96 border p-10 lg:translate-x-125 md:translate-x-15 lg:translate-y-10 bg-slate-900 flex-col rounded-4xl shadow-lg shadow-cyan-500/50 hover:scale-105 hover:bg-slate-950 delay-150 duration-300 ease-in-out">
-                <div className="flex justify-center gap-1">
-                    <FileText/>
-                </div>
-                <div className="flex flex-1 items-center   flex-col">
-                    <h1 className="font-mono text-2xl text-slate-300 font-bold">Drag & Drop</h1>
-                    <p className="text-lg">or click below to browse</p>
-                </div>
-                <div className="flex justify-between items-center flex-col lg:-translate-y-10 sm:-translate-y-40 gap-2">
-                    <Button onClick={() => inputFile.current?.click()}>Choose Image</Button>
+    setFile
+}:FileProps
+){
 
-                <input ref={inputFile} type='file' multiple onChange={handleChange} className="hidden"></input>
-                    
-                </div>
-                
-                <div className="flex flex-col items-center lg:px-13 lg:-translate-y-5 sm:-translate-y-40 gap-2">
-                    <p>Instant PDF Generation </p>
-                    <p>100% Private</p>
-                    <p>No Ads. No Watermark</p>
-                    <p>Works Fully Offline</p>
-                </div>
-            </div>
-        </div>
-        </>
-    )
+const inputFile = useRef<HTMLInputElement>(null)
+
+
+const handleChange = (
+e:React.ChangeEvent<HTMLInputElement>
+)=>{
+
+    if(!e.target.files) return;
+
+
+    setFile(prev=>[
+        ...prev,
+        ...Array.from(e.target.files!)
+    ])
 
 }
 
+
+
+return(
+
+<div className=" flex justify-center px-4 py-10
+">
+
+
+<div
+className=" w-full max-w-sm aspect-square border p-6 bg-slate-900 flex flex-col rounded-3xl shadow-lg shadow-cyan-500/50 hover:scale-105 transition duration-300
+"
+>
+
+
+<div className=" flex justify-center
+">
+
+<FileText/>
+
+</div>
+
+
+
+<div className=" flex-1 flex items-center flex-col justify-center text-center
+">
+
+
+<h1 className=" font-mono text-xl sm:text-2xl text-slate-300 font-bold
+">
+
+Drag & Drop
+
+</h1>
+
+
+<p>
+or click below to browse
+</p>
+
+
+</div>
+
+
+
+<div className=" flex flex-col gap-3 items-center
+">
+
+
+<Button
+onClick={() =>
+inputFile.current?.click()
+}
+>
+
+Choose Image
+
+</Button>
+
+
+<input
+
+ref={inputFile}
+
+type="file"
+
+multiple
+
+accept="image/*"
+
+onChange={handleChange}
+
+className="hidden"
+
+/>
+
+
+</div>
+
+
+
+<div className=" text-sm text-center mt-4 space-y-1
+">
+
+
+<p>Instant PDF Generation</p>
+<p>100% Private</p>
+<p>No Ads. No Watermark</p>
+<p>Works Fully Offline</p>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+)
+
+}
