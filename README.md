@@ -167,21 +167,6 @@ Planned features:
 - Conversion animations
 - Better mobile support
 
-### Performance
-
-- Web Worker based conversion
-- Large file optimization
-- Better memory management
-
-### Backend (Optional)
-
-Possible future additions:
-
-- User accounts
-- Conversion history
-- Cloud storage
-- API based conversion service
-
 ---
 
 ## 📌 Learning Goal
